@@ -4,6 +4,14 @@
     box-sizing: border-box;
 }
 
-canvas {
-    display: block;
+.hide {
+    display: none;
+}
+
+.show {
+    display: initial;
+}
+
+.image-preview {
+    width: 300px;
 }

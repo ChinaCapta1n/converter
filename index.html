@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./style/index.css">
 </head>
+
 <body>
 
-    <canvas id="canvas"></canvas>
+    <p>
+        <input type="file" id="imageFileSelector" value="请选择图片" />
+    </p>
+    <p>
+        <img id="originImagePreview" class="hide image-preview" />
+    </p>
+    <p>
+        <img id="compressedImagePreview" class="hide image-preview" />
+    </p>
 
-    <a id="download" href="">下载</a>
+    <script type="module" src="./script/index.js"></script>
 
-    <script src="./script/index.js"></script>
-    
 </body>
+
 </html>
