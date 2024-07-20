@@ -2,12 +2,17 @@
   const oImageFileSelector = document.querySelector('#imageFileSelector');
   const oOriginImagePreview = document.querySelector('#originImagePreview');
   const oCompressImagePreview = document.querySelector('#compressedImagePreview');
+  const beforeImage = document.querySelector('.beforeImage');
+  const afterImage = document.querySelector('.afterImage');
+  const oDownload = document.querySelector('#download');
+  const oPercent = document.querySelector('.percent');
   const reader = new FileReader();
+  
 
   let imageFile = null;
   let quality = 30;
   let compressedImageSource = '';
-
+  let compressedPercent = '';
 
   const IMAGE_TYPES = {
     'image/jpeg': 'image/jpeg',
@@ -25,6 +30,7 @@
 
   function handleFileSelectorChange(e) {
     imageFile = e.target.files[0];
+    console.log(imageFile)
     
     if(!imageFile || !IMAGE_TYPES[imageFile.type]) {
       alert('请选择正确格式的图片');
@@ -41,6 +47,8 @@
 
     setPreviewVisible(oOriginImagePreview, false);
     setPreviewVisible(oCompressImagePreview, false);
+    setPreviewVisible(beforeImage, false);
+    setPreviewVisible(afterImage, false);
   }
 
   function setImagePreview(imageFile) {
@@ -57,6 +65,11 @@
         oCompressImagePreview.src = compressedImageSource;
         setPreviewVisible(oOriginImagePreview, true);
         setPreviewVisible(oCompressImagePreview, true);
+        setPreviewVisible(beforeImage, true);
+        setPreviewVisible(afterImage, true);
+        compressedPercent = '已压缩' + ((originImageSource.length - compressedImageSource.length) / originImageSource.length * 100).toFixed(2) + '%';
+        oPercent.innerText = compressedPercent;
+        oDownload.href = compressedImageSource;
       }
 
       reader.readAsDataURL(imageFile);
@@ -88,8 +101,8 @@
 
   function doCompress(canvas, imageSource, type) {
     compressedImageSource = canvas.toDataURL(type, quality / 100);
-
-    if(compressedImageSource.length >= imageSource.length && quality > 10) {
+    console.log(quality)
+    if(compressedImageSource.length >= imageSource.length && quality >= 10) {
       quality -= 10;
       doCompress(canvas, imageSource, type);
     }
