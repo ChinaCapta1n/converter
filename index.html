@@ -10,16 +10,20 @@
 
 <body>
 
-    <p>
-        <input type="file" id="imageFileSelector" value="请选择图片" />
-    </p>
-    <p>
-        <img id="originImagePreview" class="hide image-preview" />
-    </p>
-    <p>
-        <img id="compressedImagePreview" class="hide image-preview" />
-    </p>
+    <div class="container">
+        <p class="selector-wrapper">
+            <span class="desc-text">拖拽图片到此处或者点击选择图片</span>
+            <input class="imageFileSelector" type="file" id="imageFileSelector" value="请选择图片" />
+        </p>
+        <p>
+            <img id="originImagePreview" class="hide image-preview" />
+        </p>
+        <p>
+            <img id="compressedImagePreview" class="hide image-preview" />
+        </p>
+    </div>
 
+    <script type="module" src="./script/drag.js"></script>
     <script type="module" src="./script/index.js"></script>
 
 </body>
