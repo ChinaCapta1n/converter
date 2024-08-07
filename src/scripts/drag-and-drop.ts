@@ -19,6 +19,7 @@ let percent: string = '';
 function bindEvent() {
   oInput!.addEventListener('dragenter', onDragenter);
   oInput!.addEventListener('dragleave', onDragleave);
+  oInput!.addEventListener('drop', onDrog);
   oInput!.addEventListener('change', onChange);
 }
 
@@ -28,6 +29,10 @@ function onDragenter(e: DragEvent) {
 }
 
 function onDragleave(e: DragEvent) {
+  (e.target as HTMLElement).classList.remove('dragenter');
+}
+
+function onDrog(e: DragEvent) {
   (e.target as HTMLElement).classList.remove('dragenter');
 }
 
